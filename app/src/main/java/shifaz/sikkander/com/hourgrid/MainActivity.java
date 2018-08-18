@@ -1,6 +1,7 @@
 package shifaz.sikkander.com.hourgrid;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
 
     public TextView Duration;
 
+    int i = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick (View v) {
-
+                ++i;
                 String EventName = textInputEventName.getText().toString();
                 String startTime = textInputStartTime.getText().toString();
                 String durationTime = textInputDuration.getText().toString();
@@ -63,6 +66,21 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 Toast.makeText(getApplicationContext(), "Event Name: " + EventName + "\nStartTime: " + startTime + "\nDuration: " + durationTime + " hours", Toast.LENGTH_SHORT).show();
+
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        // Do something after 1s = 1000ms
+                        Intent intentHourGridActivity = new Intent(MainActivity.this, HourGridActivity.class);
+                        intentHourGridActivity.putExtra ( "TextBox", textInputEventName.getText().toString());
+                        intentHourGridActivity.putExtra ( "TextBox1", textInputStartTime.getText().toString()); //Passing information to HourGridActivity
+                        intentHourGridActivity.putExtra ( "TextBox2", textInputDuration.getText().toString());
+                        intentHourGridActivity.putExtra ( "TextBox3", i);
+                        intentHourGridActivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP); //To prevent information being refreshed
+                        startActivity(intentHourGridActivity);
+                    }
+                }, 1000);
             }
         });
 
@@ -70,12 +88,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intentHourGridActivity = new Intent(MainActivity.this, HourGridActivity.class);
-                intentHourGridActivity.putExtra ( "TextBox", textInputEventName.getText().toString());
-                intentHourGridActivity.putExtra ( "TextBox1", textInputStartTime.getText().toString()); //Passing information to HourGridActivity
-                intentHourGridActivity.putExtra ( "TextBox2", textInputDuration.getText().toString());
                 intentHourGridActivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP); //To prevent information being refreshed
                 startActivity(intentHourGridActivity);
             }
         });
+
     }
 }

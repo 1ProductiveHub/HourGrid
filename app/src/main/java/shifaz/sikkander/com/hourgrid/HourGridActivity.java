@@ -8,12 +8,18 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class HourGridActivity extends AppCompatActivity {
 
@@ -33,28 +39,26 @@ public class HourGridActivity extends AppCompatActivity {
         inputStartTime = findViewById(R.id.input_startTime);
         inputDuration = findViewById(R.id.input_duration);
 
-        layout = findViewById(R.id.layout);
-
         Intent getEventName = getIntent();
         String eventName = getEventName.getStringExtra ( "TextBox");
         Intent getStartTime = getIntent();
         String startTime = getStartTime.getStringExtra ( "TextBox1");
         Intent getDurationTime = getIntent();
         String durationTime = getDurationTime.getStringExtra ( "TextBox2");
-        inputEventName.setText(eventName);
+
+        Intent getCounter = getIntent();
+        int counter = getCounter.getIntExtra ("TextBox3", 0);
+
+        inputEventName.setText("" + counter);
         inputStartTime.setText(startTime);
         inputDuration.setText(durationTime);
+        String midNight = "00:00";
 
-        final Button secondBtn = new Button(HourGridActivity.this);
+//        final Button secondBtn = new Button(HourGridActivity.this);
 
 //        int width = 890;
 //        int height = 360;
 
-        float width = 890;
-        float height = 90;        // 1 hour ~ 45
-
-        int width_px = (int)convertDpToPixel(width);
-        int height_px = (int)convertDpToPixel(height);
 //
 //        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(width, height);
 //        secondBtn.setLayoutParams(params);
@@ -68,11 +72,11 @@ public class HourGridActivity extends AppCompatActivity {
 //        secondBtn.setWidth(500);
 //        secondBtn.setHeight(900);
 //        RelativeLayout.LayoutParams myParams = new RelativeLayout.LayoutParams(width, height);
-        RelativeLayout.LayoutParams myParams = new RelativeLayout.LayoutParams(width_px, height_px);
+//        RelativeLayout.LayoutParams myParams = new RelativeLayout.LayoutParams(width, height);
 //        secondBtn.setTextSize(60);
-        secondBtn.setMinHeight(0);
-        secondBtn.setMinimumHeight(0);
-        secondBtn.setLayoutParams(myParams);
+//        secondBtn.setMinHeight(0);
+//        secondBtn.setMinimumHeight(0);
+//        secondBtn.setLayoutParams(myParams);
 
 //        float fPixelsX = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 71, getResources().getDisplayMetrics());
 //        int pixelsX = (int) (fPixelsX);
@@ -87,22 +91,48 @@ public class HourGridActivity extends AppCompatActivity {
 //        secondBtn.setPadding(0,0,0,0);
 
 
-        layout.addView(secondBtn, myParams);
 
-        secondBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int x = secondBtn.getHeight();
-                String x_str = Integer.toString(x);
-                Toast.makeText(HourGridActivity.this, "Height = " + x_str, Toast.LENGTH_SHORT).show();
+
+
+//        layout.addView(secondBtn, myParams);
+
+        for (int i = counter; i < (counter + 1); i++){
+
+            SimpleDateFormat format = new SimpleDateFormat("hh:mm");
+            try {
+                Date date1 = format.parse(startTime);
+                Date date2 = format.parse(durationTime);
+                Date date3 = format.parse(midNight);
+                float minDifference = ((date2.getTime() - date1.getTime())/60000);
+                float hourDifference = minDifference/60;
+                inputDuration.setText(hourDifference + " hours ");
+
+                float minStarting = ((date1.getTime() - date3.getTime())/60000);
+                float hourStarting = minStarting/60;
+                inputStartTime.setText(hourStarting + " Starts ");
+
+                float height = 26 * hourDifference;
+                float starting = 15 + (26 * hourStarting);
+
+                TextView secondText = new TextView(HourGridActivity.this);
+                layout = findViewById(R.id.layout);
+                Resources r = layout.getResources();
+                int pxLeft = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 75, r.getDisplayMetrics());
+                int pxTop = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, starting, r.getDisplayMetrics());
+                int pxHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, height, r.getDisplayMetrics());
+                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, pxHeight);
+
+                params.setMargins(pxLeft,pxTop,0,0);
+                secondText.setText(eventName);
+                secondText.setBackgroundResource(R.color.pink);
+                secondText.setId(i);
+
+                layout.addView(secondText, params);
+
+            } catch (ParseException e) {
+                e.printStackTrace();
             }
-        });
 
-    }
-
-    public static float convertDpToPixel(float dp){
-        DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
-        float px = dp * (metrics.densityDpi / 160f);
-        return Math.round(px);
+        }
     }
 }
