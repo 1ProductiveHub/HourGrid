@@ -2,15 +2,18 @@ package shifaz.sikkander.com.hourgrid;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
+import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class HourGridActivity extends AppCompatActivity {
 
@@ -42,10 +45,16 @@ public class HourGridActivity extends AppCompatActivity {
         inputStartTime.setText(startTime);
         inputDuration.setText(durationTime);
 
-        Button secondBtn = new Button(HourGridActivity.this);
+        final Button secondBtn = new Button(HourGridActivity.this);
 
-        int width = 890;
-        int height = 240;
+//        int width = 890;
+//        int height = 360;
+
+        float width = 890;
+        float height = 90;        // 1 hour ~ 45
+
+        int width_px = (int)convertDpToPixel(width);
+        int height_px = (int)convertDpToPixel(height);
 //
 //        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(width, height);
 //        secondBtn.setLayoutParams(params);
@@ -58,7 +67,8 @@ public class HourGridActivity extends AppCompatActivity {
 
 //        secondBtn.setWidth(500);
 //        secondBtn.setHeight(900);
-        RelativeLayout.LayoutParams myParams = new RelativeLayout.LayoutParams(width, height);
+//        RelativeLayout.LayoutParams myParams = new RelativeLayout.LayoutParams(width, height);
+        RelativeLayout.LayoutParams myParams = new RelativeLayout.LayoutParams(width_px, height_px);
 //        secondBtn.setTextSize(60);
         secondBtn.setMinHeight(0);
         secondBtn.setMinimumHeight(0);
@@ -78,5 +88,21 @@ public class HourGridActivity extends AppCompatActivity {
 
 
         layout.addView(secondBtn, myParams);
+
+        secondBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int x = secondBtn.getHeight();
+                String x_str = Integer.toString(x);
+                Toast.makeText(HourGridActivity.this, "Height = " + x_str, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    public static float convertDpToPixel(float dp){
+        DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
+        float px = dp * (metrics.densityDpi / 160f);
+        return Math.round(px);
     }
 }
