@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <EditText
+            android:id="@+id/text_input_eventName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Event Name"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/text_input_startTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Starting Time (24hr clock)"
+            android:inputType="time" />
+
+        <EditText
+            android:id="@+id/text_input_duration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="How many hours is the event"
+            android:inputType="time" />
+
+        <Button
+            android:id="@+id/confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="100dp"
+            android:layout_marginTop="10dp"
+            android:text="Create Event"/>
+
+        <Button
+            android:id="@+id/hourGrid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="120dp"
+            android:layout_marginTop="15dp"
+            android:text="HourGrid"/>
+
+        <TextView
+            android:id="@+id/duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="120dp"
+            android:layout_marginTop="15dp"
+            android:hint="time"
+            android:textSize="40dp"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
