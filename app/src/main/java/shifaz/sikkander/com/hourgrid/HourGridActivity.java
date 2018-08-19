@@ -2,6 +2,7 @@ package shifaz.sikkander.com.hourgrid;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -12,16 +13,25 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class HourGridActivity extends AppCompatActivity {
+
+    // GSon
+//    ArrayList<EventItem> mEventList;
 
     private TextView inputEventName;
     private TextView inputStartTime;
@@ -29,11 +39,13 @@ public class HourGridActivity extends AppCompatActivity {
 
     private RelativeLayout layout;
 
-    @SuppressLint("WrongConstant")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hour_grid);
+
+        // GSon
+//        loadData();
 
         inputEventName = findViewById(R.id.input_eventName);
         inputStartTime = findViewById(R.id.input_startTime);
@@ -49,7 +61,7 @@ public class HourGridActivity extends AppCompatActivity {
         Intent getCounter = getIntent();
         int counter = getCounter.getIntExtra ("TextBox3", 0);
 
-        inputEventName.setText("" + counter);
+        inputEventName.setText(eventName);
         inputStartTime.setText(startTime);
         inputDuration.setText(durationTime);
         String midNight = "00:00";
@@ -90,10 +102,6 @@ public class HourGridActivity extends AppCompatActivity {
 //        secondBtn.setY(pixelsY);
 //        secondBtn.setPadding(0,0,0,0);
 
-
-
-
-
 //        layout.addView(secondBtn, myParams);
 
         for (int i = counter; i < (counter + 1); i++){
@@ -129,10 +137,36 @@ public class HourGridActivity extends AppCompatActivity {
 
                 layout.addView(secondText, params);
 
+                //GSon
+//                saveData();
+
             } catch (ParseException e) {
                 e.printStackTrace();
             }
 
         }
     }
+
+    //GSon
+//    private void saveData(){
+//        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+//        Gson gson = new Gson();
+//        String json = gson.toJson(mEventList);
+//        editor.putString("task list", json);
+//        editor.apply ();
+//    }
+
+    //GSon
+//    private void loadData(){
+//        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+//        Gson gson = new Gson();
+//        String json = sharedPreferences.getString("task list", null);
+//        Type type = new TypeToken<ArrayList<EventItem>>() {}.getType();
+//        mEventList = gson.fromJson(json, type);
+//
+//        if (mEventList == null){
+//            mEventList = new ArrayList<>();
+//        }
+//    }
 }

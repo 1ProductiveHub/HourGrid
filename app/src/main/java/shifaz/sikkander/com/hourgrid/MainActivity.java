@@ -83,15 +83,5 @@ public class MainActivity extends AppCompatActivity {
                 }, 1000);
             }
         });
-
-        hourGrid.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intentHourGridActivity = new Intent(MainActivity.this, HourGridActivity.class);
-                intentHourGridActivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP); //To prevent information being refreshed
-                startActivity(intentHourGridActivity);
-            }
-        });
-
     }
 }
