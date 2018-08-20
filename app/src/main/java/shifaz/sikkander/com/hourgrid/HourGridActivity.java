@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
@@ -39,6 +40,10 @@ public class HourGridActivity extends AppCompatActivity {
 
     private RelativeLayout layout;
 
+    public static ArrayList<String> arrayEventName = new ArrayList<String>();
+    public static ArrayList<String> arrayStartTime = new ArrayList<String>();
+    public static ArrayList<String> arrayDurationTime = new ArrayList<String>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +70,62 @@ public class HourGridActivity extends AppCompatActivity {
         inputStartTime.setText(startTime);
         inputDuration.setText(durationTime);
         String midNight = "00:00";
+
+        arrayEventName.add(eventName);
+        arrayStartTime.add(startTime);
+        arrayDurationTime.add(durationTime);
+
+        for (int i = 0; i < (arrayEventName.size()); i++){
+            startTime = arrayStartTime.get(i);
+            durationTime = arrayDurationTime.get(i);
+
+            SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+            try {
+                Date date1 = format.parse(startTime);
+                Date date2 = format.parse(durationTime);
+                Date date3 = format.parse(midNight);
+                float minDifference = ((date2.getTime() - date1.getTime())/60000);
+                float hourDifference = minDifference/60;
+                inputDuration.setText(hourDifference + " hours ");
+
+                float minStarting = ((date1.getTime() - date3.getTime())/60000);
+                float hourStarting = minStarting/60;
+                inputStartTime.setText(hourStarting + " Starts ");
+
+                float height = 26 * hourDifference;
+                float starting = 16 + (26 * hourStarting);
+
+                TextView secondText = new TextView(HourGridActivity.this);
+                layout = findViewById(R.id.layout);
+                Resources r = layout.getResources();
+                int pxLeft = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 75, r.getDisplayMetrics());
+                int pxTop = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, starting, r.getDisplayMetrics());
+                int pxHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, height, r.getDisplayMetrics());
+                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, pxHeight);
+
+                params.setMargins(pxLeft,pxTop,0,0);
+                secondText.setText(arrayEventName.get(i));
+                int[] opaqueColours = HourGridActivity.this.getResources().getIntArray(R.array.opaqueColours);
+                secondText.setBackgroundColor(opaqueColours[i]);
+                if (i > 10){
+                    secondText.setBackgroundResource(R.color.pink);
+                }
+                if (hourDifference <= 0.5){
+                    secondText.setTextSize(9);
+                }else {
+                    secondText.setTextSize(16);
+                }
+                secondText.setId(i);
+
+                layout.addView(secondText, params);
+                //GSon
+//                saveData();
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
 
 //        final Button secondBtn = new Button(HourGridActivity.this);
 
@@ -104,47 +165,47 @@ public class HourGridActivity extends AppCompatActivity {
 
 //        layout.addView(secondBtn, myParams);
 
-        for (int i = counter; i < (counter + 1); i++){
+//        for (int i = counter; i < (counter + 1); i++){}
 
-            SimpleDateFormat format = new SimpleDateFormat("hh:mm");
-            try {
-                Date date1 = format.parse(startTime);
-                Date date2 = format.parse(durationTime);
-                Date date3 = format.parse(midNight);
-                float minDifference = ((date2.getTime() - date1.getTime())/60000);
-                float hourDifference = minDifference/60;
-                inputDuration.setText(hourDifference + " hours ");
 
-                float minStarting = ((date1.getTime() - date3.getTime())/60000);
-                float hourStarting = minStarting/60;
-                inputStartTime.setText(hourStarting + " Starts ");
-
-                float height = 26 * hourDifference;
-                float starting = 15 + (26 * hourStarting);
-
-                TextView secondText = new TextView(HourGridActivity.this);
-                layout = findViewById(R.id.layout);
-                Resources r = layout.getResources();
-                int pxLeft = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 75, r.getDisplayMetrics());
-                int pxTop = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, starting, r.getDisplayMetrics());
-                int pxHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, height, r.getDisplayMetrics());
-                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, pxHeight);
-
-                params.setMargins(pxLeft,pxTop,0,0);
-                secondText.setText(eventName);
-                secondText.setBackgroundResource(R.color.pink);
-                secondText.setId(i);
-
-                layout.addView(secondText, params);
-
-                //GSon
-//                saveData();
-
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-
-        }
+            // Keep
+//            SimpleDateFormat format = new SimpleDateFormat("hh:mm");
+//            try {
+//                Date date1 = format.parse(startTime);
+//                Date date2 = format.parse(durationTime);
+//                Date date3 = format.parse(midNight);
+//                float minDifference = ((date2.getTime() - date1.getTime())/60000);
+//                float hourDifference = minDifference/60;
+//                inputDuration.setText(hourDifference + " hours ");
+//
+//                float minStarting = ((date1.getTime() - date3.getTime())/60000);
+//                float hourStarting = minStarting/60;
+//                inputStartTime.setText(hourStarting + " Starts ");
+//
+//                float height = 26 * hourDifference;
+//                float starting = 15 + (26 * hourStarting);
+//
+//                TextView secondText = new TextView(HourGridActivity.this);
+//                layout = findViewById(R.id.layout);
+//                Resources r = layout.getResources();
+//                int pxLeft = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 75, r.getDisplayMetrics());
+//                int pxTop = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, starting, r.getDisplayMetrics());
+//                int pxHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, height, r.getDisplayMetrics());
+//                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, pxHeight);
+//
+//                params.setMargins(pxLeft,pxTop,0,0);
+//                secondText.setText(eventName);
+//                secondText.setBackgroundResource(R.color.pink);
+////                secondText.setId(i);
+//
+//                layout.addView(secondText, params);
+//
+//                //GSon
+////                saveData();
+//
+//            } catch (ParseException e) {
+//                e.printStackTrace();
+//            }
     }
 
     //GSon

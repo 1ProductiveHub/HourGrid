@@ -4,4 +4,26 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="pink">#96ff4081</color>
+    <color name="blue">#96407cff</color>
+    <color name="purple">#968640ff</color>
+    <color name="green">#9640ff43</color>
+    <color name="yellow">#96fff940</color>
+    <color name="turquoise">#9640ffbc</color>
+    <color name="orange">#96ff8940</color>
+    <color name="lightBlue">#9640c6ff</color>
+    <color name="darkGreen">#9640ff7c</color>
+    <color name="lightPurple">#968040ff</color>
+
+    <array name="opaqueColours">
+        <item>@color/pink</item>
+        <item>@color/blue</item>
+        <item>@color/purple</item>
+        <item>@color/green</item>
+        <item>@color/yellow</item>
+        <item>@color/turquoise</item>
+        <item>@color/orange</item>
+        <item>@color/lightBlue</item>
+        <item>@color/darkGreen</item>
+        <item>@color/lightBlue</item>
+    </array>
 </resources>

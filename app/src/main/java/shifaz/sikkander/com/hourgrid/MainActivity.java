@@ -51,10 +51,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick (View v) {
                 ++i;
-                String EventName = textInputEventName.getText().toString();
+                final String EventName = textInputEventName.getText().toString();
                 String startTime = textInputStartTime.getText().toString();
                 String durationTime = textInputDuration.getText().toString();
-                SimpleDateFormat format = new SimpleDateFormat("hh:mm");
+                SimpleDateFormat format = new SimpleDateFormat("HH:mm");
                 try {
                     Date date1 = format.parse(startTime);
                     Date date2 = format.parse(durationTime);
