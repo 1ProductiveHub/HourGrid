@@ -10,6 +10,8 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.text.SimpleDateFormat;
@@ -32,6 +34,10 @@ public class MainActivity extends AppCompatActivity {
 
     int i = 0;
 
+    RadioGroup radioGroup;
+    RadioButton radioButton, Sa, Su, Mo, Tu, We, Th, Fr;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,10 +52,22 @@ public class MainActivity extends AppCompatActivity {
 
         Duration = findViewById(R.id.duration);
 
+        radioGroup = findViewById(R.id.radioGroup);
+        Sa = findViewById(R.id.saturday);
+        Su = findViewById(R.id.sunday);
+        Mo = findViewById(R.id.monday);
+        Tu = findViewById(R.id.tuesday);
+        We = findViewById(R.id.wednesday);
+        Th = findViewById(R.id.thursday);
+        Fr = findViewById(R.id.friday);
+
         confirm.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick (View v) {
+                int radioId = radioGroup.getCheckedRadioButtonId();
+                radioButton = findViewById(radioId);
+
                 ++i;
                 final String EventName = textInputEventName.getText().toString();
                 String startTime = textInputStartTime.getText().toString();
@@ -60,27 +78,119 @@ public class MainActivity extends AppCompatActivity {
                     Date date2 = format.parse(durationTime);
                     float minDifference = ((date2.getTime() - date1.getTime())/60000);
                     float hourDifference = minDifference/60;
-                    Duration.setText(hourDifference + " hours");
+                    Duration.setText("Day: " + radioButton.getText() + "\n" + hourDifference + " hours");
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
 
-                Toast.makeText(getApplicationContext(), "Event Name: " + EventName + "\nStartTime: " + startTime + "\nDuration: " + durationTime + " hours", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Day: "+ radioButton.getText() + "\nEvent Name: " + EventName + "\nStartTime: " + startTime + "\nEndTime: " + durationTime, Toast.LENGTH_SHORT).show();
 
-                final Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        // Do something after 1s = 1000ms
-                        Intent intentHourGridActivity = new Intent(MainActivity.this, HourGridActivity.class);
-                        intentHourGridActivity.putExtra ( "TextBox", textInputEventName.getText().toString());
-                        intentHourGridActivity.putExtra ( "TextBox1", textInputStartTime.getText().toString()); //Passing information to HourGridActivity
-                        intentHourGridActivity.putExtra ( "TextBox2", textInputDuration.getText().toString());
-                        intentHourGridActivity.putExtra ( "TextBox3", i);
-                        intentHourGridActivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP); //To prevent information being refreshed
-                        startActivity(intentHourGridActivity);
-                    }
-                }, 1000);
+                if(Su.isChecked()){
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            // Do something after 1s = 1000ms
+                            Intent intentHourGridSundayActivity = new Intent(MainActivity.this, HourGridSundayActivity.class);
+                            intentHourGridSundayActivity.putExtra ( "TextBox", textInputEventName.getText().toString());
+                            intentHourGridSundayActivity.putExtra ( "TextBox1", textInputStartTime.getText().toString()); //Passing information to HourGridActivity
+                            intentHourGridSundayActivity.putExtra ( "TextBox2", textInputDuration.getText().toString());
+                            intentHourGridSundayActivity.putExtra ( "TextBox3", i);
+                            intentHourGridSundayActivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP); //To prevent information being refreshed
+                            startActivity(intentHourGridSundayActivity);
+                        }
+                    }, 1000);
+                }else if(Mo.isChecked()){
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            // Do something after 1s = 1000ms
+                            Intent intentHourGridMondayActivity = new Intent(MainActivity.this, HourGridMondayActivity.class);
+                            intentHourGridMondayActivity.putExtra ( "TextBox", textInputEventName.getText().toString());
+                            intentHourGridMondayActivity.putExtra ( "TextBox1", textInputStartTime.getText().toString()); //Passing information to HourGridActivity
+                            intentHourGridMondayActivity.putExtra ( "TextBox2", textInputDuration.getText().toString());
+                            intentHourGridMondayActivity.putExtra ( "TextBox3", i);
+                            intentHourGridMondayActivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP); //To prevent information being refreshed
+                            startActivity(intentHourGridMondayActivity);
+                        }
+                    }, 1000);
+                }else if(Tu.isChecked()){
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            // Do something after 1s = 1000ms
+                            Intent intentHourGridTuesdayActivity = new Intent(MainActivity.this, HourGridTuesdayActivity.class);
+                            intentHourGridTuesdayActivity.putExtra ( "TextBox", textInputEventName.getText().toString());
+                            intentHourGridTuesdayActivity.putExtra ( "TextBox1", textInputStartTime.getText().toString()); //Passing information to HourGridActivity
+                            intentHourGridTuesdayActivity.putExtra ( "TextBox2", textInputDuration.getText().toString());
+                            intentHourGridTuesdayActivity.putExtra ( "TextBox3", i);
+                            intentHourGridTuesdayActivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP); //To prevent information being refreshed
+                            startActivity(intentHourGridTuesdayActivity);
+                        }
+                    }, 1000);
+                }else if(We.isChecked()){
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            // Do something after 1s = 1000ms
+                            Intent intentHourGridWednesdayActivity = new Intent(MainActivity.this, HourGridWednesdayActivity.class);
+                            intentHourGridWednesdayActivity.putExtra ( "TextBox", textInputEventName.getText().toString());
+                            intentHourGridWednesdayActivity.putExtra ( "TextBox1", textInputStartTime.getText().toString()); //Passing information to HourGridActivity
+                            intentHourGridWednesdayActivity.putExtra ( "TextBox2", textInputDuration.getText().toString());
+                            intentHourGridWednesdayActivity.putExtra ( "TextBox3", i);
+                            intentHourGridWednesdayActivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP); //To prevent information being refreshed
+                            startActivity(intentHourGridWednesdayActivity);
+                        }
+                    }, 1000);
+                }else if(Th.isChecked()){
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            // Do something after 1s = 1000ms
+                            Intent intentHourGridThursdayActivity = new Intent(MainActivity.this, HourGridThursdayActivity.class);
+                            intentHourGridThursdayActivity.putExtra ( "TextBox", textInputEventName.getText().toString());
+                            intentHourGridThursdayActivity.putExtra ( "TextBox1", textInputStartTime.getText().toString()); //Passing information to HourGridActivity
+                            intentHourGridThursdayActivity.putExtra ( "TextBox2", textInputDuration.getText().toString());
+                            intentHourGridThursdayActivity.putExtra ( "TextBox3", i);
+                            intentHourGridThursdayActivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP); //To prevent information being refreshed
+                            startActivity(intentHourGridThursdayActivity);
+                        }
+                    }, 1000);
+                }else if(Fr.isChecked()){
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            // Do something after 1s = 1000ms
+                            Intent intentHourGridFridayActivity = new Intent(MainActivity.this, HourGridFridayActivity.class);
+                            intentHourGridFridayActivity.putExtra ( "TextBox", textInputEventName.getText().toString());
+                            intentHourGridFridayActivity.putExtra ( "TextBox1", textInputStartTime.getText().toString()); //Passing information to HourGridActivity
+                            intentHourGridFridayActivity.putExtra ( "TextBox2", textInputDuration.getText().toString());
+                            intentHourGridFridayActivity.putExtra ( "TextBox3", i);
+                            intentHourGridFridayActivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP); //To prevent information being refreshed
+                            startActivity(intentHourGridFridayActivity);
+                        }
+                    }, 1000);
+                }else if(Sa.isChecked()){
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            // Do something after 1s = 1000ms
+                            Intent intentHourGridSaturdayActivity = new Intent(MainActivity.this, HourGridSaturdayActivity.class);
+                            intentHourGridSaturdayActivity.putExtra ( "TextBox", textInputEventName.getText().toString());
+                            intentHourGridSaturdayActivity.putExtra ( "TextBox1", textInputStartTime.getText().toString()); //Passing information to HourGridActivity
+                            intentHourGridSaturdayActivity.putExtra ( "TextBox2", textInputDuration.getText().toString());
+                            intentHourGridSaturdayActivity.putExtra ( "TextBox3", i);
+                            intentHourGridSaturdayActivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP); //To prevent information being refreshed
+                            startActivity(intentHourGridSaturdayActivity);
+                        }
+                    }, 1000);
+                }
             }
         });
     }

@@ -29,17 +29,16 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class HourGridActivity extends AppCompatActivity {
-
+public class HourGridMondayActivity extends AppCompatActivity {
     private TextView inputEventName;
     private TextView inputStartTime;
     private TextView inputDuration;
 
     private RelativeLayout layout;
 
-    public static ArrayList<String> arrayEventName = new ArrayList<String>();
-    public static ArrayList<String> arrayStartTime = new ArrayList<String>();
-    public static ArrayList<String> arrayDurationTime = new ArrayList<String>();
+    public static ArrayList<String> arrayEventNameMO = new ArrayList<String>();
+    public static ArrayList<String> arrayStartTimeMO = new ArrayList<String>();
+    public static ArrayList<String> arrayDurationTimeMO = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,13 +64,13 @@ public class HourGridActivity extends AppCompatActivity {
         inputDuration.setText(durationTime);
         String midNight = "00:00";
 
-        arrayEventName.add(eventName);
-        arrayStartTime.add(startTime);
-        arrayDurationTime.add(durationTime);
+        arrayEventNameMO.add(eventName);
+        arrayStartTimeMO.add(startTime);
+        arrayDurationTimeMO.add(durationTime);
 
-        for (int i = 0; i < (arrayEventName.size()); i++){
-            startTime = arrayStartTime.get(i);
-            durationTime = arrayDurationTime.get(i);
+        for (int i = 0; i < (arrayEventNameMO.size()); i++){
+            startTime = arrayStartTimeMO.get(i);
+            durationTime = arrayDurationTimeMO.get(i);
 
             SimpleDateFormat format = new SimpleDateFormat("HH:mm");
             try {
@@ -89,7 +88,7 @@ public class HourGridActivity extends AppCompatActivity {
                 float height = 26 * hourDifference;
                 float starting = 16 + (26 * hourStarting);
 
-                TextView secondText = new TextView(HourGridActivity.this);
+                TextView secondText = new TextView(HourGridMondayActivity.this);
                 layout = findViewById(R.id.layout);
                 Resources r = layout.getResources();
                 int pxLeft = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 75, r.getDisplayMetrics());
@@ -98,8 +97,8 @@ public class HourGridActivity extends AppCompatActivity {
                 RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, pxHeight);
 
                 params.setMargins(pxLeft,pxTop,0,0);
-                secondText.setText(arrayEventName.get(i));
-                int[] opaqueColours = HourGridActivity.this.getResources().getIntArray(R.array.opaqueColours);
+                secondText.setText(arrayEventNameMO.get(i));
+                int[] opaqueColours = HourGridMondayActivity.this.getResources().getIntArray(R.array.opaqueColours);
                 secondText.setBackgroundColor(opaqueColours[i]);
                 if (i > 10){
                     secondText.setBackgroundResource(R.color.pink);
