@@ -95,12 +95,63 @@
             android:text="Create Event"/>
 
         <Button
-            android:id="@+id/hourGrid"
+            android:id="@+id/Calendar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="120dp"
-            android:layout_marginTop="15dp"
-            android:text="HourGrid"/>
+            android:layout_marginHorizontal="100dp"
+            android:layout_marginTop="10dp"
+            android:text="Calendar"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="15dp">
+
+            <Button
+                android:id="@+id/hourGridSA"
+                android:layout_width="46dp"
+                android:layout_height="wrap_content"
+                android:text="SA"/>
+
+            <Button
+                android:id="@+id/hourGridSU"
+                android:layout_width="46dp"
+                android:layout_height="wrap_content"
+                android:text="SU"/>
+
+            <Button
+                android:id="@+id/hourGridMO"
+                android:layout_width="46dp"
+                android:layout_height="wrap_content"
+                android:text="MO"/>
+
+            <Button
+                android:id="@+id/hourGridTU"
+                android:layout_width="46dp"
+                android:layout_height="wrap_content"
+                android:text="TU"/>
+
+            <Button
+                android:id="@+id/hourGridWE"
+                android:layout_width="46dp"
+                android:layout_height="wrap_content"
+                android:text="WE"/>
+
+            <Button
+                android:id="@+id/hourGridTH"
+                android:layout_width="46dp"
+                android:layout_height="wrap_content"
+                android:text="TH"/>
+
+            <Button
+                android:id="@+id/hourGridFR"
+                android:layout_width="46dp"
+                android:layout_height="wrap_content"
+                android:text="FR"/>
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/duration"

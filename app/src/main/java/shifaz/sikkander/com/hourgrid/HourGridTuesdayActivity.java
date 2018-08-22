@@ -99,8 +99,9 @@ public class HourGridTuesdayActivity extends AppCompatActivity {
                 params.setMargins(pxLeft,pxTop,0,0);
                 secondText.setText(arrayEventNameTU.get(i));
                 int[] opaqueColours = HourGridTuesdayActivity.this.getResources().getIntArray(R.array.opaqueColours);
-                secondText.setBackgroundColor(opaqueColours[i]);
-                if (i > 10){
+                if (i < 10){
+                    secondText.setBackgroundColor(opaqueColours[i]);
+                }else{
                     secondText.setBackgroundResource(R.color.pink);
                 }
                 if (hourDifference <= 0.5){
