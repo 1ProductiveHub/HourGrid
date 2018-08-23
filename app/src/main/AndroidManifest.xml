@@ -24,6 +24,8 @@
         <activity android:name=".HourGridThursdayActivity"/>
         <activity android:name=".HourGridFridayActivity"/>
         <activity android:name=".HourGridSaturdayActivity"/>
+        <activity android:name=".CalendarActivity"/>
+        <activity android:name=".FrameLayoutActivity"/>
     </application>
 
 </manifest>

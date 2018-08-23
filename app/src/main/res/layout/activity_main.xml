@@ -83,7 +83,7 @@
             android:id="@+id/text_input_duration"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="How many hours is the event"
+            android:hint="End Time (24hr clock)"
             android:inputType="time" />
 
         <Button
@@ -95,7 +95,7 @@
             android:text="Create Event"/>
 
         <Button
-            android:id="@+id/Calendar"
+            android:id="@+id/calendar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="100dp"

@@ -19,6 +19,7 @@ import java.time.Duration;
 import java.time.Instant;
 
 import java.text.ParseException;                                                                    // test comment
+import java.util.Calendar;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText textInputDuration;
 
     private Button hourGridSA, hourGridSU, hourGridMO, hourGridTU, hourGridWE, hourGridTH, hourGridFR;
-    private Button confirm;
+    private Button confirm, calendar;
 
     public TextView Duration;
 
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         hourGridTH = findViewById(R.id.hourGridTH);
         hourGridFR = findViewById(R.id.hourGridFR);
         confirm = findViewById(R.id.confirm);
+        calendar = findViewById(R.id.calendar);
 
         Duration = findViewById(R.id.duration);
 
@@ -201,6 +203,15 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }, 1000);
                 }
+            }
+        });
+
+        calendar.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick (View v) {
+                Intent intentCalendarActivity = new Intent(MainActivity.this, CalendarActivity.class);
+//                intentCalendarActivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP); //To prevent information being refreshed
+                startActivity(intentCalendarActivity);
             }
         });
 

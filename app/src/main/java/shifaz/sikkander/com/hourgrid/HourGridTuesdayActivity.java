@@ -43,7 +43,7 @@ public class HourGridTuesdayActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hour_grid);
+        setContentView(R.layout.activity_hour_grid_tuesday);
 
         inputEventName = findViewById(R.id.input_eventName);
         inputStartTime = findViewById(R.id.input_startTime);

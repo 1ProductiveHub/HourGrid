@@ -5,8 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HourGridActivity"
     android:id="@+id/layout">
+
+    <!--tools:context=".HourGridActivity"-->
 
     <!--<Button-->
         <!--android:layout_width="match_parent"-->
@@ -37,6 +38,12 @@
         <!--android:text="Lunch"-->
         <!--android:textAlignment="textStart"-->
         <!--android:textSize="11dp" />-->
+    <TextView
+        android:id="@+id/day"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Day"
+        android:textAlignment="center"/>
 
     <ImageView
         android:id="@+id/hoursGrid"
@@ -45,7 +52,7 @@
         android:layout_marginTop="15dp"
         android:background="@android:color/transparent"
         android:scaleType="fitXY"
-        android:src="@drawable/hour_grid_x3" />
+        android:src="@drawable/hour_grid_x3"/>
 
     <TextView
         android:id="@+id/input_eventName"
