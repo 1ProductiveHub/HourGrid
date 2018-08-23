@@ -16,16 +16,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".HourGridActivity"/>
-        <activity android:name=".HourGridSundayActivity"/>
-        <activity android:name=".HourGridMondayActivity"/>
-        <activity android:name=".HourGridTuesdayActivity"/>
-        <activity android:name=".HourGridWednesdayActivity"/>
-        <activity android:name=".HourGridThursdayActivity"/>
-        <activity android:name=".HourGridFridayActivity"/>
-        <activity android:name=".HourGridSaturdayActivity"/>
-        <activity android:name=".CalendarActivity"/>
-        <activity android:name=".FrameLayoutActivity"/>
+        <activity android:name=".HourGridActivity" />
+        <activity android:name=".HourGridSundayActivity" />
+        <activity android:name=".HourGridMondayActivity" />
+        <activity android:name=".HourGridTuesdayActivity" />
+        <activity android:name=".HourGridWednesdayActivity" />
+        <activity android:name=".HourGridThursdayActivity" />
+        <activity android:name=".HourGridFridayActivity" />
+        <activity android:name=".HourGridSaturdayActivity" />
+        <activity android:name=".CalendarActivity" />
+        <activity android:name=".FrameLayoutActivity" />
+        <activity android:name=".ToDoList"></activity>
     </application>
 
 </manifest>

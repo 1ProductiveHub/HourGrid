@@ -162,6 +162,14 @@
             android:textSize="40dp"
             android:textAlignment="center"/>
 
+        <Button
+            android:id="@+id/todobtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="100dp"
+            android:layout_marginTop="10dp"
+            android:text="To Do List"/>
+
     </LinearLayout>
 
 </RelativeLayout>

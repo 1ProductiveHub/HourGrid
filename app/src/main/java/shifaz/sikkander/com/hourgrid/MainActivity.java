@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     private Button hourGridSA, hourGridSU, hourGridMO, hourGridTU, hourGridWE, hourGridTH, hourGridFR;
     private Button confirm, calendar;
 
+    private Button toToListBtn;
+
     public TextView Duration;
 
     int i = 0;
@@ -68,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
         We = findViewById(R.id.wednesday);
         Th = findViewById(R.id.thursday);
         Fr = findViewById(R.id.friday);
+
+        toToListBtn = findViewById(R.id.todobtn);
 
         confirm.setOnClickListener(new View.OnClickListener(){
 
@@ -310,6 +314,14 @@ public class MainActivity extends AppCompatActivity {
                 intentFridayActivity.putExtra ( "TextBox3", i);
                 startActivity(intentFridayActivity);
                 --i;
+            }
+        });
+
+        toToListBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ToDoList.class);
+                startActivity(intent);
             }
         });
     }
